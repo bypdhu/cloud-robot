@@ -8,6 +8,17 @@
 - name: Create the mongos configuration file
   template: src=mongos.conf.j2 dest=/etc/mongos.conf
 
+- name: Create the mongos service file
+  template: src=mongos.service.j2 dest=/run/systemd/generator.late/mongos.service
+
+- name: Create soft link to mongos service file
+  file: src=/run/systemd/generator.late/mongos.service
+        dest=/run/systemd/generator.late/runlevel3.target.wants/mongos.service state=link
+
+- name: Create soft link to mongos service file
+  file: src=/run/systemd/generator.late/mongos.service
+        dest=/run/systemd/generator.late/runlevel5.target.wants/mongos.service state=link
+
 #- name: Copy the keyfile for authentication
 #  copy: src=roles/mongod/files/secret dest={{ mongodb_datadir_prefix }}/secret owner=mongod group=mongod mode=0400
 
