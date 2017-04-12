@@ -29,13 +29,13 @@
   with_items: "{{ groups.replication_servers }}"
 
 - name: Create soft link to mongodb service file
-  copy: src=/run/systemd/generator.late/mongod-{{ inventory_hostname }}.service
+  file: src=/run/systemd/generator.late/mongod-{{ inventory_hostname }}.service
         dest=/run/systemd/generator.late/runlevel3.target.wants/mongod-{{ inventory_hostname }}.service state=link
   delegate_to: '{{ item }}'
   with_items: "{{ groups.replication_servers }}"
 
 - name: Create soft link to mongodb service file
-  copy: src=/run/systemd/generator.late/mongod-{{ inventory_hostname }}.service
+  file: src=/run/systemd/generator.late/mongod-{{ inventory_hostname }}.service
         dest=/run/systemd/generator.late/runlevel5.target.wants/mongod-{{ inventory_hostname }}.service state=link
   delegate_to: '{{ item }}'
   with_items: "{{ groups.replication_servers }}"
