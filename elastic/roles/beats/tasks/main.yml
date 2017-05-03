@@ -35,5 +35,3 @@
 
 - name: check beats servers date
   command: date
-  delegate_to: '{{ item }}'
-  with_items: "{{ groups.beats_servers }}"
