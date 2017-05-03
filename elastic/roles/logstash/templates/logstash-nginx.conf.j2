@@ -1,14 +1,14 @@
 input {
    beats {
-        port => {{ beats.port }}
+        port => {{ beats_port }}
     }
 }
 filter {
-       if [type] == "{{ logstash.filter.type.nginx.access.value }}" {
+       if [type] == "{{ logstash_filter_access_value }}" {
             grok {
-                patterns_dir => "{{ logstash.filter.type.nginx.access.patterns_dir }}"
+                patterns_dir => "{{ logstash_filter_access_patternsdir }}"
                 match => {
-                    "message" => "{{ logstash.filter.type.nginx.access.message }}"
+                    "message" => "{{ logstash_filter_access_message }}"
                 }
                 overwrite => ["message"]
                 remove_field => ["beat"]
@@ -35,11 +35,11 @@ filter {
                 all_fields => true
             }
         }
-       if [type] == "{{ logstash.filter.type.nginx.error.value }}" {
+       if [type] == "{{ logstash_filter_error_value }}" {
                 grok {
-                    patterns_dir => "{{ logstash.filter.type.nginx.error.patterns_dir }}"
+                    patterns_dir => "{{ logstash_filter_error_patternsdir }}"
                     match => {
-                        "message" => "{{ logstash.filter.type.nginx.error.message }}"
+                        "message" => "{{ logstash_filter_error_message }}"
                     }
                 }
                 urldecode {
@@ -48,24 +48,24 @@ filter {
         }
 }
 output {
-      if [type] == "{{ logstash.output.type.access.value }}" {
+      if [type] == "{{ logstash_output_access_value }}" {
         elasticsearch {
-          hosts => {{ logstash.output.type.access.es.hosts }}
-          user => {{ logstash.output.type.access.es.user }}
-          password => {{ logstash.output.type.access.es.pass }}
+          hosts => {{ logstash_output_access_es_hosts }}
+          user => {{ logstash_output_access_es_user }}
+          password => {{ logstash_output_access_es_pass }}
           manage_template => true
-          index => "{{ logstash.output.type.access.es.index }}"
-          document_type => "{{ logstash.output.type.access.es.doc_type }}"
+          index => "{{ logstash_output_access_es_index }}"
+          document_type => "{{ logstash_output_access_es_doctype }}"
         }
       }
-      if [type] == "{{ logstash.output.type.error.value }}" {
+      if [type] == "{{ logstash_output_error_value }}" {
           elasticsearch {
-            hosts => {{ logstash.output.type.error.es.hosts }}
-            user => {{ logstash.output.type.error.es.user }}
-            password => {{ logstash.output.type.error.es.pass }}
+            hosts => {{ logstash_output_error_es_hosts }}
+            user => {{ logstash_output_error_es_user }}
+            password => {{ logstash_output_error_es_pass }}
             manage_template => true
-            index => "{{ logstash.output.type.error.es.index }}"
-            document_type => {{ logstash.output.type.error.es.doc_type }}
+            index => "{{ logstash_output_error_es_index }}"
+            document_type => {{ logstash_output_error_es_doctype }}
           }
       }
           stdout { codec => rubydebug }
