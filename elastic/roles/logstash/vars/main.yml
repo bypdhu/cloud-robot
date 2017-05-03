@@ -30,9 +30,9 @@ logstash:
         value: nginx_error
         es:
           hosts:
-            - "localhost:9200"
+            - localhost:9200
           user: elastic
           pass: changeme
           index: logstash-\%{[@metadata][beat]}-error-\%{+YYYY.MM.dd}
-          doc_type: "\%{[@metadata][type]}"
+          doc_type: \%{[@metadata][type]}
 
