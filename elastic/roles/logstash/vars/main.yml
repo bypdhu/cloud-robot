@@ -1,3 +1,4 @@
+logstash_get_path: /opt/logstash
 logstash:
   get:
     path: /opt/logstash

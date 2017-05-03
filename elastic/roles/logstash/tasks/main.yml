@@ -61,7 +61,7 @@
 - name: check logstash servers date
   command: date
 
-- name: prepare for install, mkdir "{{ logstash.get.path }}"
+- name: prepare for install, mkdir "{{ logstash_get_path }}"
   file: dest="{{ logstash.get.path }}" state=directory
 
 - name: download logstash compression package "{{ logstash.get.url }}", to "{{ logstash.get.path }}"/"{{ logstash.get.name }}"
