@@ -37,5 +37,3 @@
 
 - name: check elasticsearch servers date
   command: date
-  delegate_to: '{{ item }}'
-  with_items: "{{ groups.elasticsearch_servers }}"

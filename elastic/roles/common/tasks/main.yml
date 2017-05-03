@@ -37,5 +37,3 @@
 
 - name: check common role's date
   command: date
-  delegate_to: '{{ item }}'
-  with_items: "{{ groups.logstash_servers }}"
