@@ -9,11 +9,11 @@ logstash:
       nginx:
         access:
           value: nginx_access
-          patterns_dir: {{ logstash.get.path }}/patterns
+          patterns_dir: "{{ logstash.get.path }}"/patterns
           message: %{NGINXACCESSONE}
         error:
           value: nginx_error
-          patterns_dir: {{ logstash.get.path }}/patterns
+          patterns_dir: "{{ logstash.get.path }}"/patterns
           message: %{NGINXERRORONE}
   output:
     type:
