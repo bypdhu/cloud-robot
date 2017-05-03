@@ -64,17 +64,17 @@
 - name: prepare for install, mkdir "{{ logstash_get_path }}"
   file: dest="{{ logstash_get_path }}" state=directory
 
-- name: download logstash compression package "{{ logstash_get_url }}", to "{{ logstash_get_path }}"/"{{ logstash_get_name }}"
-  get_url: url="{{ logstash_get_url }}" dest="{{ logstash_get_path }}"/"{{ logstash_get_name }}"
+- name: download logstash compression package "{{ logstash_get_url }}", to "{{ logstash_get_path }}/{{ logstash_get_name }}"
+  get_url: url="{{ logstash_get_url }}" dest="{{ logstash_get_path }}/{{ logstash_get_name }}"
 
-- name: uncompress package "{{ logstash_get_path }}"/"{{ logstash_get_name }}" to "{{ logstash_get_path }}"
+- name: uncompress package "{{ logstash_get_path }}/{{ logstash_get_name }}" to "{{ logstash_get_path }}"
   shell: cd "{{ logstash_get_path }}" && tar xzf "{{ logstash_get_name }}"
 
-- name: mkdir for pattern files, mkdir "{{ logstash_get_path }}"/patterns
-  file: dest="{{ logstash_get_path }}" state=directory
+- name: mkdir for pattern files, mkdir "{{ logstash_get_path }}/patterns"
+  file: dest="{{ logstash_get_path }}/patterns" state=directory
 
-- name: copy pattern files to "{{ logstash_get_path }}"/patterns
-  template: src=nginx.j2 dest="{{ logstash_get_path }}"/patterns/nginx.conf
+- name: copy pattern files to "{{ logstash_get_path }}/patterns"
+  template: src=nginx.j2 dest="{{ logstash_get_path }}/patterns/nginx.conf"
 
-- name: copy nginx config file to "{{ logstash_get_path }}"/logstash-5.3.0/bin
-  template: src=logstash-nginx.conf.j2 dest="{{ logstash_get_path }}"/logstash-5.3.0/bin/logstash-nginx.conf
+- name: copy nginx config file to "{{ logstash_get_path }}/logstash-5.3.0/bin"
+  template: src=logstash-nginx.conf.j2 dest="{{ logstash_get_path }}/logstash-5.3.0/bin/logstash-nginx.conf"
