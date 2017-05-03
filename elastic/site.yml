@@ -1,0 +1,22 @@
+---
+# This Playbook would deploy the whole mongodb cluster with replication and sharding.
+
+- hosts: all
+  roles:
+  - role: common
+
+- hosts: elasticsearch_servers
+  roles:
+  - role: elasticsearch
+
+- hosts: logstash_servers
+  roles:
+  - role: logstash
+
+- hosts: beats_servers
+  roles:
+  - role: beats
+
+#- hosts: mongo_servers
+#  tasks:
+#  - include: roles/mongod/tasks/shards.yml
