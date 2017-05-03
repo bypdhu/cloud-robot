@@ -22,7 +22,7 @@ logstash:
         value: nginx_access
         es:
           hosts:
-            - "localhost:9200"
+            - \"localhost:9200\"
           user: elastic
           pass: changeme
           index: logstash-\%{[@metadata][beat]}-access-\%{+YYYY.MM.dd}
