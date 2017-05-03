@@ -39,7 +39,7 @@ filter {
                 grok {
                     patterns_dir => "{{ logstash_filter_error_patternsdir }}"
                     match => {
-                        "message" => "%{{ logstash_filter_error_message }}"
+                        "message" => "{{ logstash_filter_error_message }}"
                     }
                 }
                 urldecode {
@@ -50,22 +50,22 @@ filter {
 output {
       if [type] == "{{ logstash_output_access_value }}" {
         elasticsearch {
-          hosts => {{ logstash_output_access_es_hosts }}
+          hosts => [ {{ logstash_output_access_es_hosts }} ]
           user => {{ logstash_output_access_es_user }}
           password => {{ logstash_output_access_es_pass }}
           manage_template => true
           index => "{{ logstash_output_access_es_index }}"
-          document_type => "%{{ logstash_output_access_es_doctype }}"
+          document_type => "{{ logstash_output_access_es_doctype }}"
         }
       }
       if [type] == "{{ logstash_output_error_value }}" {
           elasticsearch {
-            hosts => {{ logstash_output_error_es_hosts }}
+            hosts => [ {{ logstash_output_error_es_hosts }} ]
             user => {{ logstash_output_error_es_user }}
             password => {{ logstash_output_error_es_pass }}
             manage_template => true
             index => "{{ logstash_output_error_es_index }}"
-            document_type => "%{{ logstash_output_error_es_doctype }}"
+            document_type => "{{ logstash_output_error_es_doctype }}"
           }
       }
           stdout { codec => rubydebug }
