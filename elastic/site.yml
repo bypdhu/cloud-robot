@@ -10,6 +10,7 @@
   - role: elasticsearch
 
 - hosts: logstash_servers
+  sudo: true
   roles:
   - role: logstash
 
