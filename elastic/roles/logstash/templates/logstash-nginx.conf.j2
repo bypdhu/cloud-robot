@@ -65,7 +65,7 @@ output {
             password => {{ logstash_output_error_es_pass }}
             manage_template => true
             index => "{{ logstash_output_error_es_index }}"
-            document_type => {{ logstash_output_error_es_doctype }}
+            document_type => "{{ logstash_output_error_es_doctype }}"
           }
       }
           stdout { codec => rubydebug }
