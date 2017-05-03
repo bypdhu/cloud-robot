@@ -1,0 +1,3 @@
+NGINXERRORONE %{IPORHOST:nginx.access.remote_ip}\t%{DATA:nginx.access.user_name}\t%{NUMBER:nginx.access.status}
+
+NGINXACCESSONE (%{IPORHOST:remote_addr}|-)\t(%{HTTPDATE:time_local}|-)\t\"%{DATA:request}\"\t(%{NUMBER:status}|-)\t(%{NUMBER:body_bytes_sent}|-)\t\"(%{URI:http_referer}|-)\"\t\"%{DATA:http_user_agent}\"\t(%{NUMBER:request_time}|-)\t(%{HOSTPORT:upstream_addr}|-)\t(%{NUMBER:upstream_status}|-)\t(%{NUMBER:upstream_response_time}|-)\t\"%{DATA:http_x_forwarded_for}\"
