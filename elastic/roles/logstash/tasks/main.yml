@@ -60,3 +60,12 @@
 
 - name: check logstash servers date
   command: date
+
+- name: prepare for install, mkdir {{ logstash_get_path }}
+  file: dest={{ logstash_get_path }} state=directory
+
+- name: download logstash compression package {{ logstash_get_url }}, to {{ logstash_get_path }}/{{ logstash_get_name }}
+  get_url: url={{ logstash_get_url }} dest={{ logstash_get_path }}/{{ logstash_get_name }}
+
+- name: uncompress package {{ logstash_get_path }}/{{ logstash_get_name }} to {{ logstash_get_path }}
+  shell: cd {{ logstash_get_path }} && tar xzvf {{ logstash_get_name }}
