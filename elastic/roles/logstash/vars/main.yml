@@ -10,11 +10,11 @@ logstash:
         access:
           value: nginx_access
           patterns_dir: /opt/logstash/patterns
-          message: %{NGINXACCESSONE}
+          message: \%{NGINXACCESSONE}
         error:
           value: nginx_error
           patterns_dir: /opt/logstash/patterns
-          message: %{NGINXERRORONE}
+          message: \%{NGINXERRORONE}
   output:
     type:
       access:
@@ -24,8 +24,8 @@ logstash:
             - "localhost:9200"
           user: elastic
           pass: changeme
-          index: logstash-%{[@metadata][beat]}-access-%{+YYYY.MM.dd}
-          doc_type: %{[@metadata][type]}
+          index: logstash-\%{[@metadata][beat]}-access-\%{+YYYY.MM.dd}
+          doc_type: \%{[@metadata][type]}
       error:
         value: nginx_error
         es:
@@ -33,6 +33,6 @@ logstash:
             - "localhost:9200"
           user: elastic
           pass: changeme
-          index: logstash-%{[@metadata][beat]}-error-%{+YYYY.MM.dd}
-          doc_type: "%{[@metadata][type]}"
+          index: logstash-\%{[@metadata][beat]}-error-\%{+YYYY.MM.dd}
+          doc_type: "\%{[@metadata][type]}"
 
