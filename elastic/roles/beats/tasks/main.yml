@@ -21,7 +21,7 @@
   ignore_errors: True
 
 - name: start beats service in backup
-  shell: cd "{{ beats_get_path }}/{{ filebeat-5.3.0-linux-x86_64 }}" && nohup ./filebeat -c {{ beats_config }} > /dev/null 2>&1 & sleep 0
+  shell: cd "{{ beats_get_path }}/{{ beats_get_uncompressed_dir }}" && nohup ./filebeat -c {{ beats_config }} > /dev/null 2>&1 & sleep 0
   when: result.rc == 1
 
 - name: beats service has been started....
