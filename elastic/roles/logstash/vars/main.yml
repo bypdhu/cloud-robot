@@ -25,3 +25,5 @@ logstash_output_error_es_user: elastic
 logstash_output_error_es_pass: changeme
 logstash_output_error_es_index: "logstash-%{[@metadata][beat]}-error-%{+YYYY.MM.dd}"
 logstash_output_error_es_doctype: "%{[@metadata][type]}"
+
+logstash_config: logstash-nginx.conf
