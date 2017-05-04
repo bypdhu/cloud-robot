@@ -1,0 +1,42 @@
+#=========================== Filebeat prospectors =============================
+
+filebeat.prospectors:
+
+# Each - is a prospector. Most options can be set at the prospector level, so
+# you can use different prospectors for various configurations.
+# Below are the prospector specific configurations.
+
+- input_type: {{ beats_log_access_input_type }}
+
+# Paths that should be crawled and fetched. Glob based paths.
+  paths:
+     - {{ beats_log_access_path }}
+  document_type: {{ beats_log_access_doctype }}
+  scan_frequency: {{ beats_log_access_scanfreq }}
+
+- input_type: {{ beats_log_error_input_type }}
+  paths:
+     - {{ beats_log_error_path }}
+  document_type: {{ beats_log_error_doctype }}
+
+  scan_frequency: {{ beats_log_error_scanfreq }}
+
+#----------------------------- Logstash output --------------------------------
+output.logstash:
+  # The Logstash hosts
+  hosts: [{{ beats_output_logstash_hosts }}]
+  loadbalance: true
+  index: {{ beats_output_index }}
+
+
+
+#================================ Logging =====================================
+
+# Sets log level. The default log level is info.
+# Available log levels are: critical, error, warning, info, debug
+logging.level: {{ beats_logging_level }}
+
+# At debug level, you can selectively enable logging only for some components.
+# To enable all selectors use ["*"]. Examples of other selectors are "beat",
+# "publish", "service".
+#logging.selectors: ["*"]
