@@ -78,3 +78,6 @@
 
 - name: copy nginx config file to "{{ logstash_get_path }}/logstash-5.3.0/bin"
   template: src=logstash-nginx.conf.j2 dest="{{ logstash_get_path }}/logstash-5.3.0/bin/logstash-nginx.conf"
+
+- name: start logstash service in backup
+  shell: cd "{{ logstash_get_path }}/logstash-5.3.0/bin" && nohup ./logstash -f logstash-nginx.conf
