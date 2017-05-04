@@ -16,7 +16,7 @@
   file: dest="{{ logstash_get_path }}/patterns" state=directory
 
 - name: copy pattern files to "{{ logstash_get_path }}/patterns"
-  template: src=nginx.j2 dest="{{ logstash_get_path }}/patterns/nginx.conf"
+  template: src=pattern-nginx.j2 dest="{{ logstash_get_path }}/patterns/nginx.conf"
 
 - name: copy nginx config file to "{{ logstash_get_path }}/logstash-5.3.0/bin"
   template: src=logstash-nginx.conf.j2 dest="{{ logstash_get_path }}/logstash-5.3.0/bin/{{ logstash_config }}"
