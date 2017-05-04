@@ -25,7 +25,7 @@ filebeat.prospectors:
 output.logstash:
   # The Logstash hosts
   hosts: [{{ beats_output_logstash_hosts }}]
-  loadbalance: true
+  #loadbalance: true
   index: {{ beats_output_index }}
 
 
