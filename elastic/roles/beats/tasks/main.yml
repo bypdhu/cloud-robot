@@ -12,8 +12,8 @@
 - name: uncompress package "{{ beats_get_path }}/{{ beats_get_name }}" to "{{ beats_get_path }}"
   shell: cd "{{ beats_get_path }}" && tar xzf "{{ beats_get_name }}"
 
-- name: copy config file to "{{ beats_get_path }}/beats-5.3.0/bin"
-  template: src=filebeat.yml.j2 dest="{{ beats_get_path }}/filebeat-5.3.0-linux-x86_64/{{ beats_config }}"
+- name: copy config file to "{{ beats_get_path }}/{{ beats_get_uncompressed_dir }}"
+  template: src=filebeat.yml.j2 dest="{{ beats_get_path }}/{{ beats_get_uncompressed_dir }}/{{ beats_config }}"
 
 - name: check if beats has been started.
   shell: ps -ef | grep /filebeat/.*{{ beats_config }} | grep -v grep
@@ -21,7 +21,7 @@
   ignore_errors: True
 
 - name: start beats service in backup
-  shell: cd "{{ beats_get_path }}/filebeat-5.3.0-linux-x86_64" && nohup ./filebeat -c {{ beats_config }} > /dev/null 2>&1 & sleep 0
+  shell: cd "{{ beats_get_path }}/{{ filebeat-5.3.0-linux-x86_64 }}" && nohup ./filebeat -c {{ beats_config }} > /dev/null 2>&1 & sleep 0
   when: result.rc == 1
 
 - name: beats service has been started....

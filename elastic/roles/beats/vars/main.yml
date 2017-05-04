@@ -1,4 +1,5 @@
 beats_get_path: /opt/filebeat
+beats_get_uncompressed_dir: filebeat-5.3.0-linux-x86_64
 beats_get_url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.3.0-linux-x86_64.tar.gz
 beats_get_name: beats-install-5.3.0.tar.gz
 
