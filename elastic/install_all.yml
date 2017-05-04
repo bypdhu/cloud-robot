@@ -15,6 +15,7 @@
   - role: logstash
 
 - hosts: beats_servers
+  sudo: true
   roles:
   - role: beats
 
