@@ -1,0 +1,12 @@
+---
+# This Playbook would deploy filebeat
+
+- hosts: all
+  roles:
+  - role: common
+
+- hosts: all
+  sudo: true
+  roles:
+  - role: beats
+
