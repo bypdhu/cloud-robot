@@ -1,5 +1,10 @@
 ---
-# This Playbook would stop filebeat
+# This Playbook would stop logstash
+
+- hosts: all
+  sudo: true
+  roles:
+  - role: common_stop
 
 - hosts: all
   sudo: true

@@ -1,5 +1,5 @@
 ---
-# This Playbook would stop filebeat
+# This Playbook would stop elasticsearch
 
 - hosts: all
   sudo: true
@@ -9,5 +9,5 @@
 - hosts: all
   sudo: true
   roles:
-  - role: beats_stop
+  - role: elasticsearch_stop
 
