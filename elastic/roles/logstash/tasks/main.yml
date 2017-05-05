@@ -22,7 +22,7 @@
   template: src=logstash-nginx.conf.j2 dest="{{ logstash_get_path }}/logstash-5.3.0/bin/{{ logstash_config }}"
 
 - name: check if logstash has been started.
-  shell: ps -ef | grep /opt/logstash/.*{{ logstash_config }} | grep -v grep
+  shell: ps -ef | grep {{ logstash_get_path }}/.*{{ logstash_config }} | grep -v grep
   register: result
   ignore_errors: True
 
