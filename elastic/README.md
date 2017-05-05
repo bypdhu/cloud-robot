@@ -6,7 +6,7 @@
 - Requires Ansible 1.2
 - Expects CentOS/RHEL 7 hosts
 
-## Simple Usage For Installation 
+### Simple Usage For Installation 
 ---------------------------------------------
   #### Install all, include elasticsearch/filebeat/logstash. The hosts to install should be written in file "hosts". So we can install different package on different host. 
     ansible-playbook -i hosts install_all.yml
@@ -25,6 +25,19 @@
 
   ####
 
+### Installation Using Tags
+----------------------------------------
+  #### Install logstash service
+    ansible-playbook -i hosts install_all.yml -t "install_logstash"
+    
+  #### Install filebeat service
+    ansible-playbook -i hosts install_all.yml -t "install_filebeat"
+    
+  #### Install all services
+    ansible-playbook -i hosts install_all.yml -t "install_all"
+    
+  ####
+
 ### Simple Usage For Stopping Services
 ----------------------------------------------------------
   #### Just stop logstash service
@@ -33,6 +46,8 @@
   #### Just stop filebeat service
     ansible-playbook -i "10.99.70.38," stop_filebeat.yml
 
+  ####
+  
 ### Other Usage
 ---------------------------------------------
   #### Assign username and ssh pass.
