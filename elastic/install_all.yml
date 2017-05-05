@@ -7,6 +7,9 @@
   tags:
     - install_all
     - install
+    - install_elasticsearch
+    - install_logstash
+    - install_filebeat
 
 - hosts: elasticsearch_servers
   sudo: true
