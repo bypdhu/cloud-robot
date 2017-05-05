@@ -1,0 +1,3 @@
+logstash_stop_kill_args: -9
+
+logstash_config: logstash-nginx.conf
