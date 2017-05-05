@@ -19,6 +19,9 @@
   sudo: true
   roles:
   - role: beats
+    tags:
+      - filebeat
+      - install
 
 #- hosts: elasticsearch_servers
 #  tasks:
