@@ -4,24 +4,29 @@
 - hosts: all
   roles:
   - role: common
+  tags:
+    - install_all
+    - install
 
 - hosts: elasticsearch_servers
   sudo: true
   roles:
   - role: elasticsearch
+  tags:
+    - install_elasticsearch
 
 - hosts: logstash_servers
   sudo: true
   roles:
   - role: logstash
-
+  tags:
+    - install_logstash
 - hosts: beats_servers
   sudo: true
   roles:
   - role: beats
-    tags:
-      - filebeat
-      - install
+  tags:
+    - install_filebeat
 
 #- hosts: elasticsearch_servers
 #  tasks:
