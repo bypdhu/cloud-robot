@@ -1,0 +1,17 @@
+---
+
+- name: check beats servers date
+  command: date
+
+- name: check if beats has been started.
+  shell: ps -ef | grep /filebeat.*{{ beats_config }} | grep -v grep
+  register: result
+  ignore_errors: True
+
+- name: stop beats service
+  shell: kill {{ beats_stop_kill_args }} `ps -ef | grep /filebeat.*{{ beats_config }} | grep -v grep | awk '{print $2}'`
+  when: result.rc == 0
+
+- name: beats service has been stopped or not started yet....
+  debug: msg="beats service has been stopped or not started yet....do nothing"
+  when: result.rc == 1
