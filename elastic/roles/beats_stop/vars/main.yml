@@ -1,1 +1,3 @@
 beats_stop_kill_args: -9
+
+beats_config: filebeat.yml
