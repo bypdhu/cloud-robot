@@ -49,7 +49,7 @@
 
 - name: Load filebeat JSON index template
   uri:
-    url: http://localhost:9200/_template/filebeat?pretty
+    url: http://{{ logstash_filebeat_template_es_host_port }}/_template/filebeat?pretty
     method: POST
     body: "{{ lookup('file', 'filebeat-index-template.json') }}"
     body_format: json
