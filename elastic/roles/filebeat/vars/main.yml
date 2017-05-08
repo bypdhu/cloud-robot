@@ -1,0 +1,22 @@
+#beats_get_path: /opt/filebeat
+#beats_get_uncompressed_dir: filebeat-5.3.0-linux-x86_64
+#beats_get_url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.3.0-linux-x86_64.tar.gz
+#beats_get_name: beats-install-5.3.0.tar.gz
+#
+#beats_config: filebeat.yml
+
+beats_log_access_input_type: log
+beats_log_access_path: /opt/nginxlogs/demo.acc.log
+beats_log_access_doctype: nginx_access
+beats_log_access_scanfreq: 10s
+
+beats_log_error_input_type: log
+beats_log_error_path: /opt/ngnixlogs/*.err.log
+beats_log_error_doctype: nginx_error
+beats_log_error_scanfreq: 10s
+
+beats_output_logstash_hosts: '"10.99.70.38:5044"'
+beats_output_index: butest1_grtest1
+
+# Available log levels are: critical, error, warning, info, debug
+beats_logging_level: info
