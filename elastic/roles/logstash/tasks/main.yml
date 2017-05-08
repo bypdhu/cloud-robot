@@ -22,6 +22,7 @@
     src=logstash.conf.j2
     dest=/etc/logstash/conf.d/logstash.conf
     mode=0644
+  register: logstash_needs_restart
 
 #- name: Load OpenSSL CA Extended Configuration
 #  template:
@@ -56,6 +57,14 @@
     body: "{{ lookup('file', 'filebeat-index-template.json') }}"
     body_format: json
   ignore_errors: true
+
+- name: Start logstash service
+  command: systemctl start logstash.service
+  ignore_errors: true
+  when: logstash_needs_restart != 0
+
+- name: Setup logstash service
+  service: name=logstash state=started enabled=true
 
 # we need TCP/80 and TCP/8080 open
 # determine firewall status and take action
