@@ -1,6 +1,8 @@
-logstash_get_path: /opt/logstash
-logstash_get_url: https://artifacts.elastic.co/downloads/logstash/logstash-5.3.0.tar.gz
-logstash_get_name: logstash-install-5.3.0.tar.gz
+#logstash_get_path: /opt/logstash
+#logstash_get_url: https://artifacts.elastic.co/downloads/logstash/logstash-5.3.0.tar.gz
+#logstash_get_name: logstash-install-5.3.0.tar.gz
+#
+#logstash_config: logstash-nginx.conf
 
 logstash_filter_access_value: nginx_access
 logstash_filter_access_patternsdir: /opt/logstash/patterns
@@ -26,4 +28,4 @@ logstash_output_error_es_pass: changeme
 logstash_output_error_es_index: "logstash-error-%{[@metadata][beat]}-%{+YYYY.MM.dd}"
 logstash_output_error_es_doctype: "%{[@metadata][type]}"
 
-logstash_config: logstash-nginx.conf
+logstash_filebeat_template_es_host_port: 10.99.70.52:9200
