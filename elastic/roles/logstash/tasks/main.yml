@@ -51,8 +51,8 @@
   uri:
     url: http://{{ logstash_filebeat_template_es_host_port }}/_template/filebeat?pretty
     method: POST
-    user: {{ logstash_es_user }}
-    password: {{ logstash_es_pass }}
+    user: "{{ logstash_es_user }}"
+    password: "{{ logstash_es_pass }}"
     body: "{{ lookup('file', 'filebeat-index-template.json') }}"
     body_format: json
   ignore_errors: true
