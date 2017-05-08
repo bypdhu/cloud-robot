@@ -4,6 +4,8 @@
 #
 #logstash_config: logstash-nginx.conf
 
+logstash_pattern_path: /opt/logstash-patterns
+
 logstash_filter_access_value: nginx_access
 logstash_filter_access_patternsdir: /opt/logstash/patterns
 logstash_filter_access_message: "%{NGINXACCESSONE}"
