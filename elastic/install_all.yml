@@ -12,22 +12,22 @@
     - install_filebeat
 
 - hosts: elasticsearch_servers
-  sudo: true
+  become: true
   roles:
   - role: elasticsearch
   tags:
     - install_elasticsearch
 
 - hosts: logstash_servers
-  sudo: true
+  become: true
   roles:
   - role: logstash
   tags:
     - install_logstash
-- hosts: beats_servers
-  sudo: true
+- hosts: filebeat_servers
+  become: true
   roles:
-  - role: beats
+  - role: filebeat
   tags:
     - install_filebeat
 

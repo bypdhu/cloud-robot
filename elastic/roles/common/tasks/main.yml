@@ -37,3 +37,8 @@
 
 - name: check common role's date
   command: date
+
+# need java confirmed path..."which java" just check path /bin:/usr/bin
+#- name: check common role's java version
+#  command: java -version
+#  command: which java

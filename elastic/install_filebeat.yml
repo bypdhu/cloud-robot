@@ -8,5 +8,5 @@
 - hosts: all
   become: true
   roles:
-  - role: beats
+  - role: filebeat
 

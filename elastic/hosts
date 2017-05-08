@@ -6,6 +6,6 @@
 10.99.70.51 ansible_ssh_user=root
 10.99.70.38 ansible_ssh_user=cloud
 
-[beats_servers]
+[filebeat_servers]
 10.99.70.51 ansible_ssh_user=root
 10.99.70.38 ansible_ssh_user=cloud

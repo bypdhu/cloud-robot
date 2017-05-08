@@ -2,12 +2,12 @@
 # This Playbook would stop filebeat
 
 - hosts: all
-  sudo: true
+  become: true
   roles:
   - role: common_stop
 
 - hosts: all
-  sudo: true
+  become: true
   roles:
-  - role: beats_stop
+  - role: filebeat_stop
 

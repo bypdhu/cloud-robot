@@ -2,12 +2,12 @@
 # This Playbook would stop logstash
 
 - hosts: all
-  sudo: true
+  become: true
   roles:
   - role: common_stop
 
 - hosts: all
-  sudo: true
+  become: true
   roles:
   - role: logstash_stop
 
