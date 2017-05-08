@@ -6,6 +6,6 @@
   - role: common
 
 - hosts: all
-  sudo: true
+  become: true
   roles:
   - role: logstash
