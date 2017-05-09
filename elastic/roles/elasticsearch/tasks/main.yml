@@ -13,12 +13,20 @@
   yum: name={{ item }} state=present
   become: true
   with_items:
-    - elasticsearch
+    - elasticsearch-{{ elastic_version }}
     - java-openjdk-headless
+
+- name: Generate elasticsearch configuration template
+  template:
+    src=elasticsearch.yml.j2
+    dest=/etc/elasticsearch/elasticsearch.yml
+    mode=0644
+  register: elasticsearch_needs_restart
 
 - name: Start elasticsearch service
   command: systemctl start elasticsearch.service
   ignore_errors: true
+  when: elasticsearch_needs_restart != 0
 
 - name: Setup elasticsearch service
   service: name=elasticsearch state=started enabled=true
