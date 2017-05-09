@@ -58,6 +58,7 @@
     body_format: json
   ignore_errors: true
 
+# just start now, not really restart
 - name: Start logstash service
   command: systemctl start logstash.service
   ignore_errors: true
