@@ -6,7 +6,7 @@
     state=directory
     owner=root
     group=root
-    mode=0764
+    mode=0755
 
 - name: copy pattern files to "{{ logstash_pattern_path }}"
   copy:
