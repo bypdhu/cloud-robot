@@ -1,10 +1,20 @@
 ---
 
 - name: mkdir for pattern files, mkdir "{{ logstash_pattern_path }}"
-  file: dest="{{ logstash_pattern_path }}" state=directory
+  file:
+    dest="{{ logstash_pattern_path }}"
+    state=directory
+    owner=root
+    group=root
+    mode=0764
 
 - name: copy pattern files to "{{ logstash_pattern_path }}"
-  template: src=pattern-nginx.j2 dest="{{ logstash_pattern_path }}/nginx"
+  copy:
+    src=pattern-nginx
+    dest="{{ logstash_pattern_path }}/nginx"
+    owner=root
+    group=root
+    mode=0644
 
 - name: Copy logstash yum repo file
   copy:
