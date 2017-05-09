@@ -7,11 +7,12 @@
   copy:
     src=elasticsearch.repo
     dest=/etc/yum.repos.d/elasticsearch.repo
+    owner=root
+    group=root
     mode=0644
 
 - name: Install elasticsearch and openjdk
   yum: name={{ item }} state=present
-  become: true
   with_items:
     - elasticsearch-{{ elastic_version }}
     - java-openjdk-headless
@@ -20,6 +21,8 @@
   template:
     src=elasticsearch.yml.j2
     dest=/etc/elasticsearch/elasticsearch.yml
+    owner=root
+    group=root
     mode=0644
   register: elasticsearch_needs_restart
 
@@ -31,4 +34,3 @@
 
 - name: Setup elasticsearch service
   service: name=elasticsearch state=started enabled=true
-  become: true

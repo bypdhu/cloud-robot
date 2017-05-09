@@ -10,6 +10,8 @@
   copy:
     src=logstash.repo
     dest=/etc/yum.repos.d/logstash.repo
+    owner=root
+    group=root
     mode=0644
 
 - name: Install logstash rpms
@@ -21,6 +23,8 @@
   template:
     src=logstash.conf.j2
     dest=/etc/logstash/conf.d/logstash.conf
+    owner=logstash
+    group=logstash
     mode=0644
   register: logstash_needs_restart
 
