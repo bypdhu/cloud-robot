@@ -1,5 +1,5 @@
 es_cluster_name: cluster_logmgr_1
 # es_node_name: node_logmgr_1_${HOSTNAME}
 es_node_name: node_logmgr_1_{{ inventory_hostname }}
-#es_network_host: 0.0.0.0
+es_network_host: 0.0.0.0
 es_http_port: 9200
