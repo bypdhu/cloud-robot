@@ -38,7 +38,7 @@
 - name: create cron job to clean es indices...
   cron:
     name="clean es indices.."
-    job="/usr/bin/curl -u {{ es_user }}:{{ es_password }}  -H'Content-Type:application/json' -d'{"query":{"range":{"@timestamp":{"lt":"now-{{ es_reserve_indices }}","format":"epoch_millis"}}}}' -XPOST "http://127.0.0.1:{{ es_http_port }}/*-*/_delete_by_query?pretty" > /tmp/elk_clean.txt"
+    job="/usr/bin/curl -u {{ es_user }}:{{ es_password }}  -H'Content-Type:application/json' -d'{"query":{"range":{"@timestamp":{"lt":"now-{{ es_reserve_indices }}","format":"epoch_millis"}}}}' -XPOST "http://127.0.0.1:{{ es_port }}/*-*/_delete_by_query?pretty" > /tmp/elk_clean.txt"
     user=root
     day="{{ es_clean_interval_of_day }}"
   when: es_need_clean_indices

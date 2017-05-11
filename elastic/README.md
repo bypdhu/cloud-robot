@@ -55,3 +55,14 @@
     
   #### Assign username, ssh pass and sudo pass.
     ansible-playbook -i "10.99.70.38," install_all.yml -u cloud -e ansible_ssh_pass=123456 -e ansible_sudo_pass=654321
+
+
+### How to use with different values
+---------------------------------------
+  #### Install elasticsearch => version:5.3.0, cluster name: **, node name: **, not create cron job 
+    ansible-playbook -i "10.99.70.38," install_elasticsearch.yml -e version=5.3.0 -e es_cluster_name=cluster_logmgr_1 -e es_node_name=node_logmgr_1_10.99.70.38 -e es_need_clean_indices=false
+
+  #### Install elasticsearch => create cron job: clean indies, reserve indices: 7 day, clean interval 1 day
+    ansible-playbook -i "10.99.70.38," install_elasticsearch.yml -e es_need_clean_indices=true -e es_reserve_indices=7d -e es_clean_interval_of_day=1
+    
+  #### Install logstash => 
