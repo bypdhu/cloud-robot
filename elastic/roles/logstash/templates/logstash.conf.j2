@@ -6,7 +6,7 @@ input {
 filter {
        if [type] == "{{ logstash_filter_access_value }}" {
             grok {
-                patterns_dir => "{{ logstash_filter_access_patternsdir }}"
+                patterns_dir => "{{ logstash_pattern_path }}"
                 match => {
                     "message" => "{{ logstash_filter_access_message }}"
                 }
@@ -37,7 +37,7 @@ filter {
         }
        if [type] == "{{ logstash_filter_error_value }}" {
             grok {
-                patterns_dir => "{{ logstash_filter_error_patternsdir }}"
+                patterns_dir => "{{ logstash_pattern_path }}"
                 match => {
                     "message" => "{{ logstash_filter_error_message }}"
                 }
