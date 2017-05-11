@@ -64,7 +64,7 @@
 
 - name: Load filebeat JSON index template
   uri:
-    url: http://{{ logstash_filebeat_template_es_host_port }}/_template/filebeat?pretty
+    url: http://{{ es_host }}:{{ es_port }}/_template/filebeat?pretty
     method: POST
     user: "{{ es_user }}"
     password: "{{ es_password }}"

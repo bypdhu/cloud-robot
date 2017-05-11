@@ -50,7 +50,7 @@ filter {
 output {
       if [type] == "{{ logstash_output_access_value }}" {
             elasticsearch {
-                hosts => [{{ logstash_output_access_es_hosts }}]
+                hosts => ["{{ es_host }}:{{ es_port }}"]
                 user => {{ es_user }}
                 password => {{ es_password }}
                 manage_template => true
@@ -60,7 +60,7 @@ output {
       }
       if [type] == "{{ logstash_output_error_value }}" {
             elasticsearch {
-                hosts => ["{{ logstash_output_error_es_hosts }}"]
+                hosts => ["{{ es_host }}:{{ es_port }}"]
                 user => {{ es_user }}
                 password => {{ es_password }}
                 manage_template => true
