@@ -15,7 +15,9 @@ beats_log_error_path: /opt/ngnixlogs/*.err.log
 beats_log_error_doctype: nginx_error
 beats_log_error_scanfreq: 10s
 
-beats_output_logstash_hosts: 10.99.70.38:5044
+# 多个host的奇怪写法。。。。。
+beats_output_logstash_hosts: 10.99.70.38:5044","2.3.4.4:933
+#beats_output_logstash_hosts: 10.99.70.38:5044
 beats_output_index: butest1_grtest1
 
 # Available log levels are: critical, error, warning, info, debug
