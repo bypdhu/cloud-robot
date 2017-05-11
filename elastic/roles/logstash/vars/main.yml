@@ -7,11 +7,11 @@
 logstash_pattern_path: /opt/logstash-patterns
 
 logstash_filter_access_value: nginx_access
-logstash_filter_access_patternsdir: /opt/logstash-patterns
+#logstash_filter_access_patternsdir: /opt/logstash-patterns
 logstash_filter_access_message: "%{NGINXACCESSONE}"
 
 logstash_filter_error_value: nginx_error
-logstash_filter_error_patternsdir: /opt/logstash-patterns
+#logstash_filter_error_patternsdir: /opt/logstash-patterns
 logstash_filter_error_message: "%{NGINXERRORONE}"
 
 logstash_output_access_value: nginx_access
