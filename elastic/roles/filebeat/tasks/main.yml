@@ -18,7 +18,7 @@
 - name: Install filebeat rpms
   yum: name={{ item }} state=present
   with_items:
-    - filebeat-{{ elastic_version }}
+    - filebeat-{{ version }}
 
 - name: Generate filebeat configuration template
   template:

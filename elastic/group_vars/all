@@ -1,7 +1,7 @@
 # some global variables
 
 
-elastic_version: 5.3.0
+version: 5.3.0
 
 beats_port: 5044
 
