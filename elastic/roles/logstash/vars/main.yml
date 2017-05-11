@@ -21,8 +21,8 @@ logstash_output_access_es_index: "logstash-access-%{[@metadata][beat]}-%{+YYYY.M
 logstash_output_access_es_doctype: "%{[@metadata][type]}"
 
 logstash_output_error_value: nginx_error
-#logstash_output_error_es_hosts: '"localhost:9200", "abc"'
-logstash_output_error_es_hosts: '"10.99.70.52:9200"'
+logstash_output_error_es_hosts: 'localhost:9200", "abc'
+#logstash_output_error_es_hosts: '"10.99.70.52:9200"'
 logstash_output_error_es_index: "logstash-error-%{[@metadata][beat]}-%{+YYYY.MM.dd}"
 logstash_output_error_es_doctype: "%{[@metadata][type]}"
 
