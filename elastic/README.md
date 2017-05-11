@@ -65,4 +65,19 @@
   #### Install elasticsearch => create cron job: clean indies, reserve indices: 7 day, clean interval 1 day
     ansible-playbook -i "10.99.70.38," install_elasticsearch.yml -e es_need_clean_indices=true -e es_reserve_indices=7d -e es_clean_interval_of_day=1
     
-  #### Install logstash => 
+  #### Install logstash => set es host: **, set es user: **, set es password: **
+    ansible-playbook -i "10.99.70.38," install_logstash.yml -e es_host=10.99.70.52 -e es_user=elastic -e es_password=changeme
+    
+  #### Install logstash => set pattern path: /opt/logstash-patterns, set pattern name: **, set doctype: **
+    ansible-playbook -i "10.99.70.38," install_logstash.yml -e logstash_pattern_path=/opt/logstash-patterns -e logstash_filter_access_message="%{NGINXACCESSONE}" -e logstash_output_access_es_index="logstash-access-%{[@metadata][beat]}-%{+YYYY.MM.dd}" -e logstash_output_access_es_doctype="%{[@metadata][type]}"
+
+  #### Install filebeat => set access path: **, set output.logstash.index: **
+    ansible-playbook -i "10.99.70.38," install_filebeat.yml -e beats_log_access_path=/opt/nginxlogs/demo.acc.log -e beats_output_index=butest1_grtest1
+  
+  
+  #### Install filebeat => set one logstash host, you can use: '"10.99.70.38:5044"', "10.99.70.38:5044", 10.99.70.38:5044
+    ansible-playbook -i "10.99.70.38," install_filebeat.yml -e beats_output_logstash_hosts='"10.99.70.38:5044"'
+  
+  #### Install filebeat => set more logstash hosts: **
+    ansible-playbook -i "10.99.70.38," install_filebeat.yml -e beats_output_logstash_hosts='"10.99.70.38:5044","10.99.70.35:5044"'
+    
