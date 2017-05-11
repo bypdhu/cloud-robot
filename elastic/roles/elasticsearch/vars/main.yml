@@ -5,6 +5,6 @@ es_network_host: 0.0.0.0
 #es_http_port: 9200
 
 
-es_need_clean_indices: true
+es_need_clean_indices: false
 es_reserve_indices: 7d
 es_clean_interval_of_day: 1
