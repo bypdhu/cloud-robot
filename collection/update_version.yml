@@ -24,7 +24,7 @@
       mode=0755
 
   - name: 4. RUN UPDATE SCRIPT
-    script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh {{env}} {{project}} {{module}} {{version}} {{build}}'
+    script: '{{ remote_scripts_dir }}/scripts/{{project}}/{{module}}/update.sh {{env}} {{project}} {{module}} {{version}} {{build}}'
   - name: 5. START SERVICE
     shell: chdir=/opt/tomcat/{{module}}/ ./start.sh
 
