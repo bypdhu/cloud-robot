@@ -18,3 +18,5 @@
 # **************** check mode *****************
     ansible-playbook  install_many.yml --check -e apps_name_version=sl -vvv
     ansible-playbook  uninstall_many.yml --check -e apps_name=sl -vvv
+    ansible-playbook transfer_version.yml --check -e "project=1 module=2 file_url=http://232.zip file_name=3 file_md5=5" -vvv
+    ansible-playbook update_version.yml --check -e "project=fangjs module=debit local_scripts_dir=/root/ansible-test/playbook-test/collection remote_scripts_dir=/remote env=3 version=4 build=5"  -vvv
