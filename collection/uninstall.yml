@@ -31,4 +31,4 @@
 
   - name: if find {{ app_name }} failed the task
     fail: msg="uninstall {{ app_name }} failed!! please check"
-    when: result1.rc == 0 and result2.rc == 0 and result3.rc == 0 and result4.rc == 0
+    when: result1.rc is defined and result1.rc == 0 and result2.rc is defined and result2.rc == 0 and result3.rc is defined and result3.rc == 0 and result4.rc is defined and result4.rc == 0
