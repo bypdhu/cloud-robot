@@ -14,7 +14,7 @@
 - name: Install elasticsearch and openjdk
   yum: name={{ item }} state=present
   with_items:
-    - elasticsearch-{{ version }}
+    - elasticsearch-{{ elk_version }}
     - java-openjdk-headless
 
 - name: Generate elasticsearch configuration template

@@ -27,7 +27,7 @@
 - name: Install logstash rpms
   yum: name={{ item }} state=present
   with_items:
-    - logstash-{{ version }}
+    - logstash-{{ elk_version }}
 
 - name: Copy logstash filter configuration
   template:
