@@ -1,0 +1,34 @@
+---
+- hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: Check the date on the server.
+    command: date
+
+  - name: uninstall software {{ app_name }}
+    yum: name={{ app_name }} state=absent
+
+  - name: check software should not found by "yum list installed | grep ^{{ app_name }}"
+    shell: yum list installed | grep ^{{ app_name }}
+    register: result1
+    ignore_errors: True
+
+  - name: check software should not found by "yum list {{ app_name }} | grep Installed"
+    shell: yum list {{ app_name }} | grep Installed
+    register: result2
+    ignore_errors: True
+
+  - name: check software should not found by "yum info {{ app_name }} | grep Installed"
+    shell: yum info {{ app_name }} | grep Installed
+    register: result3
+    ignore_errors: True
+
+  - name: check software should not found by "which {{ app_name }}"
+    command: which {{ app_name }}
+    register: result4
+    ignore_errors: True
+
+  - name: if find {{ app_name }} failed the task
+    fail: msg="uninstall {{ app_name }} failed!! please check"
+    when: result1.rc == 0 and result2.rc == 0 and result3.rc == 0 and result4.rc == 0

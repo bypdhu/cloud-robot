@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: Check the date on the host.
+    command: date
+
+  - name: download logstash.
+    command: 

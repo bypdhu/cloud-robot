@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: Check the date on the host.
+    command: date
+
+  - name: install software and version {{ apps_name_version }}
+    yum: name={{ apps_name_version }} state=present
+
+  - name: get apps.
+    delegate_to: localhost
+    shell: echo {{ apps_name_version }} | awk -F, '{print $1"\n"$2}'
+    register: apps_list
+    ignore_errors: True
+
+  - name: check apps installed
+    shell: yum info {{ item }} | grep Installed
+    with_items: "{{ apps_list.stdout_lines }}"
+    when: apps_list.stdout_lines is defined and apps_list.stdout_lines != ""

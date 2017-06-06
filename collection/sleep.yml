@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+  
+  tasks:
+  - name: sleep some time
+    command: sleep {{ sleep_time }}
+  - name: sleep another time
+    command: sleep {{ sleep_time2 }}

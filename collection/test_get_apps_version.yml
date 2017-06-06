@@ -1,0 +1,31 @@
+---
+
+- hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: check date on the server.
+    command: date
+
+  - name: check if /opt/app directory exists.
+    command: cd /usr/bin
+
+  - name: get /opt/app softlink files
+    shell: ls -l /usr/bin | grep  '^l' | awk '{print $9" "$10" "$11}'
+    register: result1
+
+
+  - name: print result 
+    debug: msg={{ result1.stdout_lines }}
+   
+  - name: get other
+    shell: ls -l / | grep '^d' | awk '{print $9" "$10}'
+    register: result2
+  
+
+  - name: print result2
+    debug: var=result2.stdout 
+
+  - name: get 3
+    shell: ls -l /usr/bin | grep '^l' | awk '{print $9" "$11}'
+ 
