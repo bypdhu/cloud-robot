@@ -15,6 +15,9 @@
 # when use json vars, if you need write a value with blank, you can-and-must use a "\" before the blank,like:
   nsible-playbook -i "10.99.70.38," test_json_vars.yml --extra-vars '{"file_list":[{"name":"filename\ 231","url":"http://53w5.sfa.com/srfiaj/saf\ jo3j/zfa.zip","md5":"6t7hui2j3dfsafd"},{"name":"nam\ e2","url":"http://2.tar","md5":"md5\ 2"}]}'
 
+# use playbook with json file.
+  ansible-playbook -i "10.99.70.38," test_json_vars.yml --extra-vars "@jsontest.json"
+
 # **************** check mode *****************
     ansible-playbook  install_many.yml --check -e apps_name_version=sl -vvv
     ansible-playbook  uninstall_many.yml --check -e apps_name=sl -vvv
