@@ -55,7 +55,7 @@ deploy_new_version ()
 if [ -d ${app_dir} -a -f ${latest_dir}/${jar_file_name} ] ; then
     echo "deploy jar file" >> ${log_file}
     echo "${latest_dir}/${jar_file_name}" >> ${log_file}
-    cp ${latest_dir}/${jar_file_name} ${app_dir}/${jar_file_name}
+    mv ${latest_dir}/${jar_file_name} ${app_dir}/${jar_file_name}
     cd ${app_dir}
     nohup java -Dspring.profiles.active=${env} -jar ${jar_file_name} & sleep 0
 else
