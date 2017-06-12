@@ -5,7 +5,7 @@
 
   tasks:
   - name: Check the date on the host.
-    command: date
+    command: /usr/bin/date
 
   - name: install many software
     yum: name={{ item }} state=present
