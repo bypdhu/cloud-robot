@@ -1,0 +1,75 @@
+{
+  "tomcat_version": "7.0.73",
+  "tomcat_mirror": "http://183.136.187.85/tomcat/",
+  "tomcat_instances_libs":
+  [
+    {
+      "url": "http://183.136.187.85/tomcat/lib/dbcp-factory.jar",
+      "filename": "dbcp-factory.jar"
+    },
+    {
+      "url": "http://183.136.187.85/tomcat/lib/log4j-1.2.13.jar",
+      "filename": "log4j-1.2.13.jar"
+    },
+    {
+      "url": "http://183.136.187.85/tomcat/lib/ojdbc14-10.2.0.2.0.jar",
+      "filename": "ojdbc14-10.2.0.2.0.jar"
+    },
+    {
+      "url": "http://183.136.187.85/tomcat/lib/tomcat-juli-adapters.jar",
+      "filename": "tomcat-juli-adapters.jar"
+    }
+  ],
+  "tomcat_instances":
+  [
+    {
+      "name": "cas",
+      "service_name": "tomcat@cas",
+      "server_elements": {
+        "shutdown_port": 30025,
+        "resource": "",
+        "executors": "",
+        "connectors": {
+          "element_1": {
+            "acceptCount": 1000,
+            "port": 30020,
+            "protocol": "org.apache.coyote.http11.Http11NioProtocol",
+            "enableLookups": "false",
+            "connectionTimeout": 20000,
+            "minSpareThreads": 25,
+            "maxSpareThreads": 75,
+            "redirectPort": 8443,
+            "disableUploadTimeout": "true",
+            "URIEncoding": "utf-8",
+            "server": "Fangjs App Srv 1.0"
+          }
+        }
+      },
+      "context_elements": {
+        "Resource": {
+          "element_1": {
+            "name": "jdbc/aurum-db",
+            "auth": "Container",
+            "type": "javax.sql.DataSource",
+            "driverClassName": "oracle.jdbc.OracleDriver",
+            "url": "jdbc:oracle:thin:@//10.120.142.203:1521/fjsdb",
+            "username": "aurumuser",
+            "password": "NWQ4N2UwZGFmZjU5",
+            "initialSize": 20,
+            "maxActive": 50,
+            "maxIdle": 20,
+            "minIdle": 20,
+            "validationQuery": "select 1 from dual",
+            "testOnBorrow": "true",
+            "testOnReturn": "true",
+            "testWhileIdle": "true",
+            "timeBetweenEvictionRunsMillis": 600000,
+            "numTestsPerEvictionRun": 10,
+            "minEvictableIdleTimeMillis": 21600000,
+            "maxWait": 900
+          }
+        }
+      }
+    }
+  ]
+}
