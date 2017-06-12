@@ -1,0 +1,32 @@
+# Usage
+
+### you can set sleep time by set 'sleep_time' variable like this:
+    ansible-playbook -i "10.99.70.51," sleep.yml -e "sleep_time=10"
+
+### you can install many apps in one time use install_many.yml like this:
+    ansible-playbook -i "10.99.70.38," install_many.yml -e '{"apps_list":["sl-5.02","cowsay"]}' 
+     
+    ansible-playbook -i "10.99.70.38," install_many.yml -e '{"apps_list":["sl-5.02"]}'
+
+### you can uninstall many apps in one time use uninstall_many.yml like this:
+    ansible-playbook -i "10.99.70.39," uninstall_many.yml -e apps_name=sl,cowsay
+     
+    ansible-playbook -i "10.99.70.39," uninstall_many.yml -e apps_name=sl
+
+### use playbook with json vars. 
+    ansible-playbook -i "10.99.70.38," test_json_vars.yml --extra-vars '{"file_list":[{"name":"filename231","url":"http://53w5.sfa.com/srfiaj/safjo3j/zfa.zip","md5":"6t7hui2j3dfsafd"},{"name":"name2","url":"http://2.tar","md5":"md52"}]}'
+
+### when use json vars, if you need write a value with blank, you can-and-must use a "\" before the blank,like:
+    nsible-playbook -i "10.99.70.38," test_json_vars.yml --extra-vars '{"file_list":[{"name":"filename\ 231","url":"http://53w5.sfa.com/srfiaj/saf\ jo3j/zfa.zip","md5":"6t7hui2j3dfsafd"},{"name":"nam\ e2","url":"http://2.tar","md5":"md5\ 2"}]}'
+
+### use playbook with json file.
+    ansible-playbook -i "10.99.70.38," test_json_vars.yml --extra-vars "@jsontest.json"
+
+## **************** check mode *****************
+      ansible-playbook  install_many.yml --check -e apps_name_version=sl -vvv
+      
+      ansible-playbook  uninstall_many.yml --check -e apps_name=sl -vvv
+      
+      ansible-playbook transfer_version.yml --check -e "project=1 module=2 file_url=http://232.zip file_name=3 file_md5=5" -vvv
+      
+      ansible-playbook update_version.yml --check -e "project=fangjs module=debit local_scripts_dir=/root/ansible-test/playbook-test/collection remote_scripts_dir=/remote env=3 version=4 build=5"  -vvv
