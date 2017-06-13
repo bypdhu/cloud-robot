@@ -1,7 +1,5 @@
 #!/bin/bash
 
-su - admin
-
 env=$1
 project=$2
 module=$3
