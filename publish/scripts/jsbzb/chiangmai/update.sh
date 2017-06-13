@@ -60,6 +60,7 @@ if [ -d ${app_dir} -a -f ${latest_dir}/${jar_file_name} ] ; then
     echo "${latest_dir}/${jar_file_name}" >> ${log_file}
     mv ${latest_dir}/${jar_file_name} ${app_dir}/${jar_file_name}
     cd ${app_dir}
+    check_is_not_root
     nohup java -Dspring.profiles.active=${env} -jar ${jar_file_name} & sleep 0
 else
     echo "dir or jar_file is None" >> ${log_file}
