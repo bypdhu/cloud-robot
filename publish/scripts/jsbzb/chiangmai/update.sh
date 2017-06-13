@@ -43,6 +43,7 @@ if [ -d ${app_dir} ] ; then
         mv ${app_dir}/chiangmai*.jar ${app_dir}/tmp/
     fi
     cd ${app_dir}
+    check_is_not_root
     nohup java -Dspring.profiles.active=${env} -jar ${jar_file_name} & sleep 0
 else
     echo "dir or jar_file is None" >> ${log_file}
