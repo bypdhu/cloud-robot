@@ -2,6 +2,7 @@
 
 - hosts: all
   gather_facts: no
+  sudo: yes
 
   tasks:
   - name: Check the date on the host.
@@ -20,3 +21,4 @@
   - name: check apps installed
     shell: yum info {{ item }} | grep Installed
     with_items: "{{ apps_list }}"
+    ignore_errors: True
