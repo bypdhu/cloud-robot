@@ -38,9 +38,6 @@ if [ -d ${app_dir} ] ; then
     echo "${app_dir}/" >> ${log_file}
     if [ -d ${app_dir}/tmp ];then
         mv ${app_dir}/chiangmai*.jar ${app_dir}/tmp/
-    else
-        mkdir ${app_dir}/tmp
-        mv ${app_dir}/chiangmai*.jar ${app_dir}/tmp/
     fi
     cd ${app_dir}
     check_is_not_root
