@@ -10,11 +10,11 @@ echo "update script start" > ${log_file}
 
 
 app_dir="/home/admin/publish/${project}/${module}"
-lastest_dir="/home/admin/publish/${project}/${module}/lastest"
+latest_dir="/home/admin/publish/${project}/${module}/lastest"
 
 
 # jar_file_name="chiangmai_v1.6.16_test_45.war"
-jar_file_name=${module}_${version}.war
+jar_file_name=${module}_${version}.jar
 
 check_is_not_root () 
 {
@@ -49,11 +49,12 @@ fi
 
 deploy_new_version ()
 {
-
+echo app_dir:  ${app_dir}
+echo jar file: ${latest_dir}/${jar_file_name} 
 if [ -d ${app_dir} -a -f ${latest_dir}/${jar_file_name} ] ; then
     echo "deploy jar file" >> ${log_file}
     echo "${latest_dir}/${jar_file_name}" >> ${log_file}
-    mv ${latest_dir}/${jar_file_name} ${app_dir}/${jar_file_name}
+    mv ${latest_dir}/${jar_file_name} ${app_dir}/
     cd ${app_dir}
     check_is_not_root
     nohup java -Dspring.profiles.active=${env} -jar ${jar_file_name} & sleep 0
