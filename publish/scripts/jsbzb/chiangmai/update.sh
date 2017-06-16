@@ -16,7 +16,7 @@ latest_dir="/home/admin/publish/${project}/${module}/lastest"
 # jar_file_name="chiangmai_v1.6.16_test_45.war"
 jar_file_name=${module}_${version}.jar
 
-check_is_not_root () 
+check_is_not_root ()
 {
 current_dir=`pwd`
 if [ "${current_dir}#" == "/#" ] ; then
@@ -27,7 +27,7 @@ fi
 
 stop_old_version()
 {
-pid=`ps -ef|grep "chiangmai.*\.jar"|grep -v grep|awk '{print $2}'`
+pid=`ps -ef|grep "${module}.*\.jar"|grep -v grep|awk '{print $2}'`
 kill $pid
 }
 
@@ -37,7 +37,7 @@ if [ -d ${app_dir} ] ; then
     echo "delete old jar file..or move to ./tmp/" >> ${log_file}
     echo "${app_dir}/" >> ${log_file}
     if [ -d ${app_dir}/tmp ];then
-        mv ${app_dir}/chiangmai*.jar ${app_dir}/tmp/
+        mv ${app_dir}/${module}*.jar ${app_dir}/tmp/
     fi
     cd ${app_dir}
     check_is_not_root
@@ -50,7 +50,7 @@ fi
 deploy_new_version ()
 {
 echo app_dir:  ${app_dir}
-echo jar file: ${latest_dir}/${jar_file_name} 
+echo jar file: ${latest_dir}/${jar_file_name}
 if [ -d ${app_dir} -a -f ${latest_dir}/${jar_file_name} ] ; then
     echo "deploy jar file" >> ${log_file}
     echo "${latest_dir}/${jar_file_name}" >> ${log_file}
