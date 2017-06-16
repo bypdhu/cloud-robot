@@ -39,9 +39,6 @@ if [ -d ${app_dir} ] ; then
     if [ -d ${app_dir}/tmp ];then
         mv ${app_dir}/${module}*.jar ${app_dir}/tmp/
     fi
-    cd ${app_dir}
-    check_is_not_root
-    nohup java -Dspring.profiles.active=${env} -jar ${jar_file_name} & sleep 0
 else
     echo "dir or jar_file is None" >> ${log_file}
 fi
