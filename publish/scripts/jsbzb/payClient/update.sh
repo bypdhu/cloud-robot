@@ -1,4 +1,4 @@
-    #!/bin/bash
+#!/bin/bash
 
 env=$1
 project=$2
