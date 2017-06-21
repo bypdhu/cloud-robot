@@ -1,4 +1,4 @@
-#!/bin/bash
+    #!/bin/bash
 
 env=$1
 project=$2
@@ -48,7 +48,7 @@ deploy_new_version ()
 {
 echo app_dir:  ${app_dir}
 echo jar file: ${latest_dir}/${jar_file_name}
-if [ -d ${app_dir} -a -f ${latest_dir}/${jar_file_name} ] ; then
+if [ -d ${app_dir} -f ${latest_dir}/${jar_file_name} ] ; then
     echo "deploy jar file" >> ${log_file}
     echo "${latest_dir}/${jar_file_name}" >> ${log_file}
     mv ${latest_dir}/${jar_file_name} ${app_dir}/
