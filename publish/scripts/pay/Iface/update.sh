@@ -14,7 +14,7 @@ latest_dir="/home/admin/publish/${project}/${module}/lastest"
 
 
 # jar_file_name="chiangmai_v1.6.16_test_45.war"
-if [ "${build}#" != "#"]; then
+if [ "${build}#" != "#" ]; then
     jar_file_name=${project}${module}_${version}_${build}_${env}.jar
 else
     jar_file_name=${project}${module}_${version}_${env}.jar
