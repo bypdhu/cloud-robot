@@ -8,9 +8,9 @@
   - name: 0. Check the date on the host.
     command: date
 
-  - name: 1. make yum.repos.d backup dir
+  - name: 1. make yum.repos.backup.d backup dir
     file:
-      path: /etc/yum.repos.d/backup
+      path: /etc/yum.repos.backup.d
       group: root
       owner: root
       state: directory
@@ -23,25 +23,29 @@
       owner: root
       group: root
       force: no
+#
+#  - name: 3. move repo files to backup dir
+#    copy:
+#      remote_src: True
+#      src: "{{ item }}"
+#      dest: /etc/yum.repos.d/backup
+#    with_fileglob:
+#      - /etc/yum.repos.d/*
+#    delegete_to: {{ inventory_host }}
 
   - name: 3. move repo files to backup dir
-    copy:
-      remote_src: True
-      src: {{ item }}
-      dest: /etc/yum.repos.d/backup
-    with_fileglob:
-      - /etc/yum.repos.d/*
+    command: mv /etc/yum.repos.d/* /etc/yum.repos.backup.d/
 
 
   - name: 4. stat internal repo file
     stat:
-      path: /etc/yum.repos.d/CentOS-EJU.repo
+      path: /etc/yum.repos.backup.d/CentOS-EJU.repo
     register: repo_stat
 
   - name: 5. Move internal repo file to yum.repo.d
     copy:
       remote_src: True
-      src: /etc/yum.repos.d/backup/CentOS-EJU.repo
+      src: /etc/yum.repos.backup.d/CentOS-EJU.repo
       dest: /etc/yum.repos.d/CentOS-EJU.repo
     when: repo_stat.stat.exists
 
