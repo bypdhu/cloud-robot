@@ -27,8 +27,11 @@
   - name: 3. move repo files to backup dir
     copy:
       remote_src: True
-      src: /etc/yum.repos.d/*
+      src: {{ item }}
       dest: /etc/yum.repos.d/backup
+    with_fileglob:
+      - /etc/yum.repos.d/*
+
 
   - name: 4. stat internal repo file
     stat:
