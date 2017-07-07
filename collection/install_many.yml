@@ -2,13 +2,47 @@
 
 - hosts: all
   gather_facts: no
-  sudo: yes
+  become: yes
 
   tasks:
-  - name: Check the date on the host.
-    command: /usr/bin/date
+  - name: 0. Check the date on the host.
+    command: date
 
-  - name: install many software
+  - name: 1. make yum.repos.d backup dir
+    file:
+      path: /etc/yum.repos.d/backup
+      group: root
+      owner: root
+      state: directory
+
+  - name: 2. download internal yum repo file
+    get_url:
+      url: http://10.106.71.5/centos/CentOS-EJU.repo
+      dest: /etc/yum.repos.d/CentOS-EJU.repo
+      checksum: "md5:6b61f40741ab8f4f28f95a5535b9901e"
+      owner: root
+      group: root
+      force: no
+
+  - name: 3. move repo files to backup dir
+    copy:
+      remote_src: True
+      src: /etc/yum.repos.d/*
+      dest: /etc/yum.repos.d/backup
+
+  - name: 4. stat internal repo file
+    stat:
+      path: /etc/yum.repos.d/CentOS-EJU.repo
+    register: repo_stat
+
+  - name: 5. Move internal repo file to yum.repo.d
+    copy:
+      remote_src: True
+      src: /etc/yum.repos.d/backup/CentOS-EJU.repo
+      dest: /etc/yum.repos.d/CentOS-EJU.repo
+    when: repo_stat.stat.exists
+
+  - name: 6. install many software
     yum: name={{ item }} state=present
     with_items: "{{ apps_list }}"
 
@@ -18,7 +52,7 @@
 #    register: apps_list
 #    ignore_errors: True
 
-  - name: check apps installed
+  - name: 7. check apps installed but ignore error
     shell: yum info {{ item }} | grep Installed
     with_items: "{{ apps_list }}"
     ignore_errors: True
