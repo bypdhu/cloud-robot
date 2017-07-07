@@ -4,9 +4,12 @@
   become: yes
 
   tasks:
-  - name: add repo file
-    yum_repository:
-      name: CentOS-EJU
-      description: add internal yum CentOS-EJU.repo
-      baseurl:  http://10.106.71.5/centos/CentOS-EJU.repo
+  - name: 1. download internal yum repo file
+    get_url:
+      url: http://10.106.71.5/centos/CentOS-EJU.repo
+      dest: /etc/yum.repos.d/CentOS-EJU.repo
+      checksum: "md5:6b61f40741ab8f4f28f95a5535b9901e"
+      owner: root
+      group: root
+      force: no
 
