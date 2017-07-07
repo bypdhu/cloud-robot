@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: no
+  become: no
+
+  tasks:
+  - name: add repo file
+    yum_repository:
+      name: CentOS-EJU
+      baseurl:  http://10.106.71.5/centos/CentOS-EJU.repo
+
