@@ -14,7 +14,11 @@ latest_dir="/home/admin/publish/${project}/${module}/lastest"
 
 
 # jar_file_name="chiangmai_v1.6.16_test_45.war"
-jar_file_name=${module}_${version}.jar
+if [ "${build}#" != "#"]; then
+    jar_file_name=${project}${module}_${version}_${build}_${env}.jar
+else
+    jar_file_name=${project}${module}_${version}_${env}.jar
+fi
 
 check_is_not_root ()
 {
