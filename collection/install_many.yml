@@ -34,7 +34,7 @@
 #    delegete_to: {{ inventory_host }}
 
   - name: 3. move repo files to backup dir
-    command: mv /etc/yum.repos.d/* /etc/yum.repos.backup.d/
+    shell: mv /etc/yum.repos.d/* /etc/yum.repos.backup.d/
 
 
   - name: 4. stat internal repo file
