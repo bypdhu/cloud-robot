@@ -13,8 +13,14 @@
       recurse: yes
     with_items:
       - {sub_dir: "lastest"}
+      - {sub_dir: "history"}
 
-  - name: 2. DOWNLOAD VERSION
+  - name: 2. MOVE FILE
+    become: yes
+    shell: mv /home/admin/publish/{{project}}/{{module}}/lastest/* /home/admin/publish/{{project}}/{{module}}/history
+    ignore_errors: true
+
+  - name: 3. DOWNLOAD VERSION
     become: yes
     get_url:
       url: "{{item.file_url}}"
@@ -25,9 +31,7 @@
       force: no
     with_items: "{{ file_list }}"
 
-
-  - name: 3. RUN UPDATE SCRIPT
+  - name: 4. RUN UPDATE SCRIPT
     become: yes
 #    become_user: admin
-    script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh /home/admin/publish/{{project}}/{{module}}/lastest/{{item.file_name}}'
-    with_items: "{{ file_list }}"
+    script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh /home/admin/publish/{{project}}/{{module}}/lastest/{{projcet}}{{module}}_{{version}}_{{build}}_{{env}}.zip'
