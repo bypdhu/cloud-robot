@@ -34,4 +34,4 @@
   - name: 4. RUN UPDATE SCRIPT
     become: yes
 #    become_user: admin
-    script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh /home/admin/publish/{{project}}/{{module}}/lastest/{{projcet}}{{module}}_{{version}}_{{build}}_{{env}}.zip'
+    script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh /home/admin/publish/{{project}}/{{module}}/lastest/{{project}}{{module}}_{{version}}_{{build}}_{{env}}.zip'
