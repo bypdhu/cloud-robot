@@ -31,7 +31,10 @@
       force: no
     with_items: "{{ file_list }}"
 
-  - name: 4. RUN UPDATE SCRIPT
+  - name: 4. DEBUG
+    debug: msg="file name is: /home/admin/publish/{{project}}/{{module}}/lastest/{{project}}{{module}}_{{version}}_{{build}}_{{env}}.zip"
+
+  - name: 5. RUN UPDATE SCRIPT
     become: yes
 #    become_user: admin
     script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh /home/admin/publish/{{project}}/{{module}}/lastest/{{project}}{{module}}_{{version}}_{{build}}_{{env}}.zip'
