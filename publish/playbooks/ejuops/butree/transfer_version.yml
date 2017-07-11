@@ -32,7 +32,7 @@
     with_items: "{{ file_list }}"
 
   - name: 4. DEBUG
-    debug: msg="file name is: /home/admin/publish/{{project}}/{{module}}/lastest/{{project}}{{module}}_{{version}}_{{build}}_{{env}}.zip"
+    debug: msg="file name is == /home/admin/publish/{{project}}/{{module}}/lastest/{{project}}{{module}}_{{version}}_{{build}}_{{env}}.zip"
 
   - name: 5. RUN UPDATE SCRIPT
     become: yes
