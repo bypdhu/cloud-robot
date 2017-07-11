@@ -1,28 +1,33 @@
 ---
 - hosts: "{{host}}"
   gather_facts: False
-  become: yes
 
   tasks:
   - name: 1. MAKE DIR
+    become: yes
     file:
       path: /home/admin/publish/{{project}}/{{module}}/{{ item.sub_dir }}
       group: admin
       owner: admin
       state: directory
+      recurse: yes
     with_items:
       - {sub_dir: "lastest"}
 
   - name: 2. DOWNLOAD VERSION
+    become: yes
     get_url:
       url: "{{item.file_url}}"
       dest: "/home/admin/publish/{{project}}/{{module}}/lastest/{{item.file_name}}"
       checksum: "md5:{{item.md5}}"
       owner: admin
       group: admin
+      force: no
     with_items: "{{ file_list }}"
 
 
   - name: 3. RUN UPDATE SCRIPT
-    script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh {{env}} {{project}} {{module}} {{version}} {{build}}'
-    become_user: admin
+    become: yes
+#    become_user: admin
+    script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh /home/admin/publish/{{project}}/{{module}}/lastest/{{item.file_name}}'
+    with_items: "{{ file_list }}"
