@@ -3,7 +3,7 @@
 ### Date: 2016-11-07
 
 if [ $# -eq 1 ];then
-    /usr/bin/unzip -o  $1  -d /data/www/butree.ejuops.com && /bin/cp /data/pkgs/.env  /data/www/butree.ejuops.com/
+    /usr/bin/unzip -o  $1  -d /data/www/butree.ejuops.com && /bin/cp /data/pkgs/.env  /data/www/butree.ejuops.com/ >/dev/null
     test $? -eq 0 && printf "Update ok" || printf "Update fail"
     chmod -R 777 /data/www/butree.ejuops.com/storage/
     chmod -R 777 /data/www/butree.ejuops.com/vendor/
