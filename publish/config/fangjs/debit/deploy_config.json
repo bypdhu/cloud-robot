@@ -1,22 +1,28 @@
 {
   "tomcat_version": "7.0.73",
-  "tomcat_mirror": "http://183.136.187.85/tomcat/",
+  "tomcat_mirror": "http://mirrors.ejuops.com/softwares/tomcat",
+  "tomcat_instances_extra_bins": [
+    {
+      "url": "http://mirrors.ejuops.com/softwares/tomcat/extras/7/tomcat-juli.jar",
+      "filename": "tomcat-juli.jar"
+    }
+  ],
   "tomcat_instances_libs":
   [
     {
-      "url": "http://183.136.187.85/tomcat/lib/dbcp-factory.jar",
+      "url": "http://mirrors.ejuops.com/softwares/tomcat/extras/fangjs/dbcp-factory.jar",
       "filename": "dbcp-factory.jar"
     },
     {
-      "url": "http://183.136.187.85/tomcat/lib/log4j-1.2.13.jar",
+      "url": "http://mirrors.ejuops.com/softwares/tomcat/extras/log4j-1.2.13.jar",
       "filename": "log4j-1.2.13.jar"
     },
     {
-      "url": "http://183.136.187.85/tomcat/lib/ojdbc14-10.2.0.2.0.jar",
+      "url": "http://mirrors.ejuops.com/softwares/tomcat/extras/ojdbc14-10.2.0.2.0.jar",
       "filename": "ojdbc14-10.2.0.2.0.jar"
     },
     {
-      "url": "http://183.136.187.85/tomcat/lib/tomcat-juli-adapters.jar",
+      "url": "http://mirrors.ejuops.com/softwares/tomcat/extras/7/tomcat-juli-adapters.jar",
       "filename": "tomcat-juli-adapters.jar"
     }
   ],
@@ -29,19 +35,23 @@
         "shutdown_port": 31095,
         "resource": "",
         "executors": "",
+        "extra_classnames": [
+          "org.apache.catalina.startup.VersionLoggerListener",
+          "org.apache.catalina.core.ThreadLocalLeakPreventionListener"
+        ],
         "connectors": {
           "element_1": {
-            "acceptCount": 1000,
             "port": 31090,
             "protocol": "org.apache.coyote.http11.Http11NioProtocol",
-            "enableLookups": "false",
             "connectionTimeout": 20000,
+            "maxThreads": 1000,
             "minSpareThreads": 25,
             "maxSpareThreads": 75,
-            "redirectPort": 8443,
-            "disableUploadTimeout": "true",
-            "URIEncoding": "utf-8",
-            "server": "Fangjs App Srv 1.0"
+            "enableLookups": "false",
+            "URIEncoding": "UTF-8",
+            "acceptCount": 1000,
+            "server": "Fangjs App Srv 1.0",
+            "redirectPort": 8443
           }
         }
       },

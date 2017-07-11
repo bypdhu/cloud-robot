@@ -21,7 +21,7 @@ app_config_dir="/opt/app_config/"${module_app_config}
 module_dir="/opt/tomcat/${module}"
 webapps_dir=${module_dir}"/webapps"
 
-check_is_not_root ()
+check_is_not_root () 
 {
 current_dir=`pwd`
 if [ "${current_dir}#" == "/#" ] ; then
@@ -97,6 +97,6 @@ check_version ()
   fi
 }
 
-clean_pre_version
+clean_pre_version 
 deploy_new_version
 check_version

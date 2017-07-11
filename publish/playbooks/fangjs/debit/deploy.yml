@@ -14,17 +14,17 @@
             executors:
             connectors:
               element_1:
-                acceptCount: 1000
                 port: 31090
                 protocol: org.apache.coyote.http11.Http11NioProtocol
-                enableLookups: false
                 connectionTimeout: 20000
+                maxThreads: 1000
                 minSpareThreads: 25
                 maxSpareThreads: 75
-                redirectPort: 8443
-                disableUploadTimeout: true
-                URIEncoding: utf-8
+                enableLookups: false
+                URIEncoding: UTF-8
+                acceptCount: 1000
                 server: Fangjs App Srv 1.0
+                redirectPort: 8443
           context_elements:
             Resource:
               element_1:

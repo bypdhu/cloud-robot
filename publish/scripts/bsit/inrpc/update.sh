@@ -5,22 +5,19 @@ project=$2
 module=$3
 version=$4
 build=$5
+real_module="inrpc-release"
 log_file=/tmp/${module}_${version}_${build}_update.log
 echo "update script start" > ${log_file}
 
-latest_dir="/home/admin/publish/${project}/${module}/lastest"
+latest_config_dir="/home/admin/publish/${project}/${module}/lastest/conf"
+latest_code_dir="/home/admin/publish/${project}/${module}/lastest/code"
 
 
 # war_file_name="mb-inprc_v1.6.16_test_45.war"
-war_file_name=${module}_${version}_${env}_${build}.war
-# app_config_name="mb-inprc_v1.6.16_test_45_config.zip"
-app_config_name=${module}_${version}_${env}_${build}_config.zip
-module_app_config=`echo ${module} | cut -d- -f1`
-app_config_dir="/opt/app_config/"${module_app_config}
-module_dir="/opt/tomcat/${module}"
-webapps_dir=${module_dir}"/webapps"
+jar_file_name=${project}${module}_${version}_${build}_${env}.jar
+module_dir="/opt/app/${module}"
 
-check_is_not_root () 
+check_is_not_root ()
 {
 current_dir=`pwd`
 if [ "${current_dir}#" == "/#" ] ; then
@@ -32,52 +29,38 @@ fi
 
 clean_pre_version ()
 {
-if [ -d ${app_config_dir} -a -f ${latest_dir}/${app_config_name} ] ; then
-    echo "delete app config files" >> ${log_file}
-    cd ${app_config_dir}
-    # ehcache-hibernate.xml
-    # logback.xml
-    # sc_mb.properties
+if [ -d ${module_dir} -a -f ${latest_code_dir}/${jar_file_name} ] ; then
+    echo "delete app jar and dir" >> ${log_file}
+    cd ${module_dir}
     check_is_not_root
-    rm -f *.xml
-    rm -f *.properties
+    echo ${real_module} >> ${log_file}
+    if [ "${real_module}##" != "##" ]
+    then
+        rm -f ./${real_module}.jar
+    else
+        echo "realmodule is null" >> ${log_file}
+        exit 1
+    fi
 else
-   echo "app config or app config dir is None" >> ${log_file}
-fi
-
-# /opt/tomcat/mb-inprc/webapps/
-if [ -d ${webapps_dir} -a -f ${latest_dir}/${war_file_name} ] ; then
-    echo "delete app war and dir" >> ${log_file}
-    cd ${webapps_dir}
-    check_is_not_root
-    rm -f ./${module}.war
-    rm -rf ./${module}
-else
-    echo "webapps_dir or war_file is None" >> ${log_file}
+    echo "module_dir or jar_file is None" >> ${log_file}
 fi
 }
 
 deploy_new_version ()
 {
-if [ -d ${app_config_dir} -a -f ${latest_dir}/${app_config_name} ] ; then
-    echo "deploy app config" >> $log_file
-    cd ${app_config_dir}
-    unzip ${latest_dir}/${app_config_name} >> ${log_file}
+if [ -d ${module_dir} -a -f ${latest_code_dir}/${jar_file_name} ] ; then
+    echo "deploy jar file" >> ${log_file}
+    echo "${latest_code_dir}/${jar_file_name}" >> ${log_file}
+    echo "${module_dir}/${real_module}.jar" >> ${log_file}
+    cp -f ${latest_code_dir}/${jar_file_name} ${module_dir}/${real_module}.jar
 else
-    echo "app config or app config dir is None" >> ${log_file}
-fi
-
-if [ -d ${webapps_dir} -a -f ${latest_dir}/${war_file_name} ] ; then
-    echo "deploy war file" >> ${log_file}
-    cp ${latest_dir}/${war_file_name} ${webapps_dir}/${module}.war
-else
-    echo "webapps_dir or war_file is None" >> ${log_file}
+    echo "module_dir or jar_file is None" >> ${log_file}
 fi
 }
 
 check_version ()
 {
-  if [ -f ${webapps_dir}/${module}.war ]; then
+  if [ -f ${module_dir}/${real_module}.jar ]; then
     echo "update success" >> ${log_file}
     echo "${version}_${build}" >  ${module_dir}/VERSION
     exit 0
