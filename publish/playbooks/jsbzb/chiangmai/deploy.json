@@ -1,9 +1,0 @@
-{
-          "host": "all",
-          "project": "jsbzb",
-          "module": "chiangmai",
-          "ansible_resource_dir": "/root/ansible-test/playbook-test/publish",
-          "version": "",
-          "env": "test",
-          "build": "" 
-      }

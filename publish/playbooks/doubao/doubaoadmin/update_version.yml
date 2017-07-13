@@ -1,8 +1,0 @@
----
-- hosts: "{{host}}"
-  gather_facts: False
-  tasks:
-  - name: 2. RUN UPDATE SCRIPT
-    become: yes
-    script: '{{ ansible_resource_dir }}/scripts/{{project}}/{{module}}/update.sh {{env}} {{project}} {{module}} {{version}} {{build}}'
-    become_user: admin
