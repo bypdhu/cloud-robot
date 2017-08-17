@@ -19,7 +19,7 @@ sys.setdefaultencoding("utf-8")
 
 
 
-######################    通用(General)    ######################
+######################    通閫氱敤(General)    ######################
 GE_Btn_Ok = None
 GE_A_BuList = '//a[@class="dropdown-toggle dropdown-toggle-content ng-binding"]'
 GE_Li_BuList_Open = '//li[@class="dropdown selectui selectui01 open"]'
@@ -37,15 +37,15 @@ GE_Div_LoadingCtrl_Show = '//div[@class="loader"]'
 GE_Div_LoadingCtrl_Hide = '//div[@class="loader ng-hide"]'
 
 
-#######################    登录(Logon)    #######################
+#######################    鐧诲綍(Logon)    #######################
 # 
 LO_Span_Erweima = 'erweima'
 LO_Span_Account = 'account'
 LO_Input_TxtLoginName = 'txtLoginName'
 LO_Input_TxtPass = 'txtPass'
 LO_Div_Login = 'login_btn '
+LO_Button_Timeout_Goto = '//button[@class="swal2-confirm swal2-styled"]'
 
 
-
-######################    总览(Overview)    ######################
+######################    鎬昏(Overview)    ######################
 # 

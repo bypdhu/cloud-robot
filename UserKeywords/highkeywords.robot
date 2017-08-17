@@ -53,12 +53,16 @@ TestSimpleTeardown
 LogonCloud
     L_Open_Browser    ${Base_Url}    ${Base_Browser}
     Maximize Browser Window
+    M_Logon_Handle_timeout
     L_Logon_Account
     M_Logon_Account    ${User_Name}    ${User_Pass}
     sleep    5
 
 CloseAllWindows
     L_Close_Browsers
+
+CloseWindows
+    L_Close_Browser
 
 获得BU列表字典
     M_BuList_Open

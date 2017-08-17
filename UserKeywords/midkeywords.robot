@@ -48,7 +48,11 @@ M_BuList_GetList
     ${dict}    M_BuList_GetDic
     @{keys}    get dictionary keys    ${dict}
     @{list}    create list
-    :FOR    ${key}    IN    @{keys}
+    : FOR    ${key}    IN    @{keys}
     \    @{list1}    get from dictionary    ${dict}    ${key}
     \    append to list    ${list}    @{list1}
     [Return]    @{list}
+
+M_Logon_Handle_Timeout
+    ${status}    run keyword and return status    wait until page contains element    ${LO_Button_Timeout_Goto}    3
+    run keyword if    '${status}'=='True'    L_Logon_Timeout_Goto

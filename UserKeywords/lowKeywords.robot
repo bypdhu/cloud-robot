@@ -124,3 +124,8 @@ L_LoadingCtrl_Hide
     [Arguments]    ${timeout}
     Comment    wait until page contains    ${GE_Div_LoadingCtrl_Hide}    ${timeout}
     wait until page does not contain element    ${GE_Div_LoadingCtrl_Show}    ${timeout}
+
+L_Logon_Timeout_Goto
+    [Arguments]    ${timeout}=3
+    wait until element is visible    ${LO_Button_Timeout_Goto}
+    click button    ${LO_Button_Timeout_Goto}
