@@ -5,7 +5,7 @@ Resource          ../../UserKeywords/highkeywords.robot
 *** Test Cases ***
 登录测试
     LogonCloud
-    CloseAllWindows
+    CloseWindows
 
 获得所有BU信息
     LogonCloud
@@ -19,10 +19,10 @@ Resource          ../../UserKeywords/highkeywords.robot
     CloseAllWindows
 
 对比所有BU信息
-    log    ${Bu_Dict_List}
+    log dictionary    ${Bu_Dict_List}
     LogonCloud
     ${dict}    获得BU列表字典
-    lists should be equal    ${Bu_Dict_List}    ${dict}
+    Comment    lists should be equal    ${Bu_Dict_List}    ${dict}
     @{keys}    get dictionary keys    ${dict}
     : FOR    ${key}    IN    @{keys}
     \    @{list1}    get from dictionary    ${dict}    ${key}
