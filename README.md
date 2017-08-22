@@ -1,1 +1,1 @@
-pybot -i cloud -e debug -c critical -v User_Name:121817 -d Results TestCases/ 
+pybot -i cloud -e debug -c critical -M 测试版本:250.250 -v User_Name:121817 -d Results TestCases/ 
